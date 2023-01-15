@@ -1,0 +1,58 @@
+
+from colorama import Fore
+#pip install colorama
+
+import random
+guess = 0
+tie = 0
+win = 0
+loss = 0
+name = input("Enter Your Name: ")
+while guess != 5:
+    print(Fore.LIGHTGREEN_EX +"comp turn : stone(s) , paper(p), scissors(ss)")
+    ran = random.randint(1,3)
+    if ran ==1:
+        comp="s"
+    elif ran ==2:
+        comp="p"
+    elif ran ==3:
+        comp="ss"
+    you = input(Fore.LIGHTYELLOW_EX +"please choose:\nstone(s) , paper(p), scissors(ss)\n" + Fore.RESET)   
+    print(f"comp choose {comp} \nyou choose {you}")         
+    def play(co,you):
+        if comp==you :
+            return None
+        elif (you!= "s" and you!= "ss" and you!="p"):
+            return("hi")
+        elif comp =="s":
+            if you =="p":
+                return True
+            elif you=="ss":
+                return False
+        elif comp =="p":
+            if you =="ss":
+                return True
+            elif you=="s":
+                return False    
+        elif comp =="ss":
+            if you =="s":
+                return True
+            elif you=="p":
+                return False
+    a = play(comp,you)
+    if a == "hi":
+        print(Fore.RED + "You choose incorrect given option\n    please choose correct option" + Fore.RESET)
+    elif a== None:
+        print(Fore.CYAN +"Tie!" + Fore.RESET)
+        tie += 1
+        guess+= 1
+    elif a:
+        print(Fore.CYAN +"You win !" + Fore.RESET)
+        win += 1
+        guess+= 1
+    else :
+        print(Fore.CYAN+"You lose"+ Fore.RESET)
+        loss += 1
+        guess+= 1
+   
+print(f"Hey! {name} \nYour Total win = {win}\n     Total lose = {loss}\n     Total tie = {tie}")
